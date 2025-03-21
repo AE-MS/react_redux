@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import "./Box.css";
 
 export interface BoxProps {
@@ -11,12 +11,25 @@ export const Box: React.FC<BoxProps> = React.memo((props: BoxProps) => {
 
   const [boxCounter, setBoxCounter] = React.useState(0);
 
+  const handleClick = useCallback(() => {
+    setBoxCounter((prev) => prev + 1);
+  }, []);
+
   return (
     <div className="theBox">
       <h1>{props.name}</h1>
       <p>Age (from parent): {props.age}</p>
       <p>Box Counter (from me) {boxCounter}</p>
-      <button onClick={() => setBoxCounter(boxCounter + 1)}>Count!</button>
+      <BoxButton onClick={handleClick} />
     </div>
   );
+});
+
+interface ButtonProps {
+  onClick: () => void;
+}
+
+export const BoxButton: React.FC<ButtonProps> = React.memo(({ onClick }) => {
+  console.log("BOXBUTTON RENDERED!");
+  return <button onClick={onClick}>Click me</button>;
 });
