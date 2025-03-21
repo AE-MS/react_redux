@@ -1,0 +1,6 @@
+.theBox {
+  border: 1px solid black;
+  border-width: 5px;
+  background-color: red;
+  color: white;
+}
