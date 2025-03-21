@@ -1,3 +1,4 @@
+import React from "react";
 import "./Box.css";
 
 export interface BoxProps {
@@ -5,11 +6,13 @@ export interface BoxProps {
   age: number;
 }
 
-export const Box: React.FC<BoxProps> = (props: BoxProps) => {
+export const Box: React.FC<BoxProps> = React.memo((props: BoxProps) => {
+  console.log("BOX RENDERED!");
+
   return (
     <div className="theBox">
       <h1>{props.name}</h1>
-      <p>Age: {props.age}</p>
+      <p>Age (from parent): {props.age}</p>
     </div>
   );
-};
+});
