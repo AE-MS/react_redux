@@ -1,10 +1,15 @@
 import "./Box.css";
 
-export const Box = () => {
+export interface BoxProps {
+  name: string;
+  age: number;
+}
+
+export const Box: React.FC<BoxProps> = (props: BoxProps) => {
   return (
     <div className="theBox">
-      <h1>Box</h1>
-      <p>This is a box component.</p>
+      <h1>{props.name}</h1>
+      <p>Age: {props.age}</p>
     </div>
   );
 };
